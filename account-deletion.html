@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Account Deletion — BacHelper</title>
+
+<meta name="description"
+      content="Learn how to delete your BacHelper account and associated data.">
+
+<style>
+    :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --text: #172033;
+        --muted: #64748b;
+        --background: #f8fafc;
+        --card: #ffffff;
+        --border: #e2e8f0;
+        --soft-blue: #eff6ff;
+        --soft-red: #fef2f2;
+        --red: #dc2626;
+        --soft-green: #ecfdf5;
+        --green: #059669;
+        --radius: 18px;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family:
+            Inter,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            Arial,
+            sans-serif;
+
+        background: var(--background);
+        color: var(--text);
+        line-height: 1.75;
+    }
+
+    a {
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .topbar {
+        background: rgba(255, 255, 255, 0.92);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(12px);
+    }
+
+    .topbar-inner {
+        max-width: 1100px;
+        margin: auto;
+        padding: 16px 24px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 800;
+    }
+
+    .brand:hover {
+        text-decoration: none;
+    }
+
+    .brand-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: linear-gradient(
+            135deg,
+            var(--primary),
+            #60a5fa
+        );
+
+        color: white;
+        font-size: 20px;
+        font-weight: 900;
+
+        box-shadow:
+            0 8px 20px rgba(37, 99, 235, 0.2);
+    }
+
+    .brand-name {
+        font-size: 18px;
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+    }
+
+    .nav a {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .nav a:hover {
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    .hero {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 72px 24px 40px;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 7px 13px;
+        border-radius: 999px;
+
+        background: var(--soft-red);
+        color: var(--red);
+
+        font-size: 13px;
+        font-weight: 700;
+
+        margin-bottom: 18px;
+    }
+
+    .hero h1 {
+        font-size: clamp(36px, 6vw, 58px);
+        line-height: 1.1;
+        letter-spacing: -1.8px;
+        margin-bottom: 18px;
+    }
+
+    .hero p {
+        max-width: 760px;
+        color: var(--muted);
+        font-size: 17px;
+    }
+
+    .effective-date {
+        margin-top: 20px;
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    .layout {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px 80px;
+
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 32px;
+    }
+
+    .sidebar {
+        position: sticky;
+        top: 90px;
+        align-self: start;
+
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px;
+    }
+
+    .sidebar-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--muted);
+        font-weight: 800;
+        margin-bottom: 12px;
+    }
+
+    .sidebar a {
+        display: block;
+        padding: 8px 10px;
+        border-radius: 9px;
+
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .sidebar a:hover {
+        background: var(--soft-blue);
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    .content {
+        min-width: 0;
+    }
+
+    .intro-card {
+        background: linear-gradient(
+            135deg,
+            #eff6ff,
+            #ffffff
+        );
+
+        border: 1px solid #dbeafe;
+        border-radius: var(--radius);
+
+        padding: 28px;
+        margin-bottom: 22px;
+    }
+
+    .intro-card strong {
+        color: var(--primary);
+    }
+
+    .section {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+
+        padding: 30px;
+        margin-bottom: 18px;
+
+        box-shadow:
+            0 5px 20px rgba(15, 23, 42, 0.025);
+    }
+
+    .section-number {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: var(--soft-blue);
+        color: var(--primary);
+
+        font-weight: 800;
+        font-size: 14px;
+
+        margin-bottom: 14px;
+    }
+
+    .section h2 {
+        font-size: 23px;
+        line-height: 1.3;
+        margin-bottom: 14px;
+    }
+
+    .section h3 {
+        font-size: 17px;
+        margin-top: 22px;
+        margin-bottom: 9px;
+    }
+
+    .section p {
+        color: #475569;
+        margin-bottom: 14px;
+    }
+
+    .section p:last-child {
+        margin-bottom: 0;
+    }
+
+    .section ol,
+    .section ul {
+        padding-left: 23px;
+        margin: 12px 0;
+        color: #475569;
+    }
+
+    .section li {
+        margin-bottom: 9px;
+        padding-left: 4px;
+    }
+
+    .section li::marker {
+        color: var(--primary);
+        font-weight: 700;
+    }
+
+    .highlight {
+        margin-top: 18px;
+        padding: 17px 18px;
+
+        background: #f8fafc;
+        border-left: 4px solid var(--primary);
+
+        border-radius: 10px;
+        color: #475569;
+    }
+
+    .danger {
+        background: var(--soft-red);
+        border-left-color: var(--red);
+    }
+
+    .success {
+        background: var(--soft-green);
+        border-left-color: var(--green);
+    }
+
+    .steps {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .step {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+
+        padding: 16px;
+
+        background: #f8fafc;
+        border: 1px solid var(--border);
+        border-radius: 13px;
+    }
+
+    .step-number {
+        flex: 0 0 34px;
+
+        width: 34px;
+        height: 34px;
+
+        border-radius: 9px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: var(--primary);
+        color: white;
+
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    .step-content strong {
+        display: block;
+        color: var(--text);
+        margin-bottom: 2px;
+    }
+
+    .step-content span {
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    .email-box {
+        margin-top: 18px;
+
+        background: var(--soft-blue);
+        border: 1px solid #dbeafe;
+
+        border-radius: 14px;
+        padding: 20px;
+    }
+
+    .email-button {
+        display: inline-block;
+        margin-top: 12px;
+
+        background: var(--primary);
+        color: white;
+
+        padding: 11px 18px;
+        border-radius: 10px;
+
+        font-weight: 800;
+    }
+
+    .email-button:hover {
+        background: var(--primary-dark);
+        text-decoration: none;
+    }
+
+    .data-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .data-item {
+        padding: 17px;
+
+        background: #f8fafc;
+        border: 1px solid var(--border);
+
+        border-radius: 13px;
+    }
+
+    .data-item strong {
+        display: block;
+        color: var(--text);
+        margin-bottom: 5px;
+    }
+
+    .data-item span {
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    .contact-card {
+        background: linear-gradient(
+            135deg,
+            #1d4ed8,
+            #2563eb
+        );
+
+        color: white;
+        border-radius: var(--radius);
+
+        padding: 34px;
+        margin-top: 24px;
+
+        box-shadow:
+            0 18px 40px rgba(37, 99, 235, 0.2);
+    }
+
+    .contact-card h2 {
+        margin-bottom: 10px;
+    }
+
+    .contact-card p {
+        color: rgba(255, 255, 255, 0.82);
+    }
+
+    .contact-email {
+        display: inline-block;
+        margin-top: 18px;
+
+        background: white;
+        color: var(--primary);
+
+        padding: 11px 17px;
+        border-radius: 10px;
+
+        font-weight: 800;
+    }
+
+    .contact-email:hover {
+        text-decoration: none;
+        opacity: 0.92;
+    }
+
+    footer {
+        border-top: 1px solid var(--border);
+        background: white;
+    }
+
+    .footer-inner {
+        max-width: 1100px;
+        margin: auto;
+        padding: 28px 24px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .footer-brand {
+        font-weight: 800;
+    }
+
+    .footer-text {
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+    .footer-links {
+        display: flex;
+        gap: 18px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    @media (max-width: 800px) {
+
+        .nav {
+            display: none;
+        }
+
+        .hero {
+            padding-top: 48px;
+        }
+
+        .layout {
+            grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+            position: static;
+        }
+
+        .sidebar a {
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .section {
+            padding: 23px;
+        }
+
+        .data-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-inner {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
+    @media (max-width: 500px) {
+
+        .topbar-inner,
+        .hero,
+        .layout,
+        .footer-inner {
+            padding-left: 18px;
+            padding-right: 18px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+        }
+
+        .section h2 {
+            font-size: 20px;
+        }
+
+        .contact-card {
+            padding: 26px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+```
+<div class="topbar-inner">
+
+    <a href="index.html" class="brand">
+
+        <div class="brand-icon">
+            B
+        </div>
+
+        <span class="brand-name">
+            BacHelper
+        </span>
+
+    </a>
+
+    <nav class="nav">
+
+        <a href="index.html">
+            Privacy Policy
+        </a>
+
+        <a href="terms-of-service.html">
+            Terms of Service
+        </a>
+
+        <a href="account-deletion.html">
+            Account Deletion
+        </a>
+
+    </nav>
+
+</div>
+```
+
+</header>
+
+<section class="hero">
+
+```
+<div class="hero-badge">
+    Account & Privacy
+</div>
+
+<h1>
+    Account Deletion
+</h1>
+
+<p>
+    This page explains how BacHelper users can delete their
+    account and request deletion of associated online data.
+</p>
+
+<div class="effective-date">
+    <strong>Effective date:</strong> August 27, 2026
+</div>
+```
+
+</section>
+
+<div class="layout">
+
+```
+<aside class="sidebar">
+
+    <div class="sidebar-title">
+        On this page
+    </div>
+
+    <a href="#inside-app">
+        Delete from the App
+    </a>
+
+    <a href="#email">
+        Request by Email
+    </a>
+
+    <a href="#deleted">
+        Data Deleted
+    </a>
+
+    <a href="#remaining">
+        Data That May Remain
+    </a>
+
+    <a href="#guest">
+        Guest Users
+    </a>
+
+    <a href="#local">
+        Local Device Data
+    </a>
+
+    <a href="#third-party">
+        Third-Party Services
+    </a>
+
+    <a href="#contact">
+        Contact
+    </a>
+
+</aside>
+
+
+<main class="content">
+
+
+    <div class="intro-card">
+
+        <strong>Your data, your choice.</strong>
+
+        BacHelper allows users who sign in with Google to
+        request deletion of their account and associated
+        online data.
+
+        You can delete your account directly from the app
+        or contact us if you cannot access the app.
+
+    </div>
+
+
+    <section class="section" id="inside-app">
+
+        <div class="section-number">
+            01
+        </div>
+
+        <h2>
+            Delete Your Account from Inside the App
+        </h2>
+
+        <p>
+            The easiest way to delete your BacHelper account
+            is directly from the application.
+        </p>
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <div class="step-content">
+
+                    <strong>
+                        Open BacHelper
+                    </strong>
+
+                    <span>
+                        Launch the BacHelper application.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <div class="step-content">
+
+                    <strong>
+                        Open Settings
+                    </strong>
+
+                    <span>
+                        Go to the Settings section.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <div class="step-content">
+
+                    <strong>
+                        Select Delete Account Permanently
+                    </strong>
+
+                    <span>
+                        Tap the account deletion option.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    4
+                </div>
+
+                <div class="step-content">
+
+                    <strong>
+                        Read the Warning
+                    </strong>
+
+                    <span>
+                        Review the information displayed before continuing.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    5
+                </div>
+
+                <div class="step-content">
+
+                    <strong>
+                        Confirm Deletion
+                    </strong>
+
+                    <span>
+                        Confirm the deletion request as shown in the app.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="highlight danger">
+
+            <strong>
+                Important:
+            </strong>
+
+            After confirmation, BacHelper will attempt to
+            delete your Google-linked account data and sign
+            you out.
+
+        </div>
+
+    </section>
+
+
+    <section class="section" id="email">
+
+        <div class="section-number">
+            02
+        </div>
+
+        <h2>
+            Request Account Deletion by Email
+        </h2>
+
+        <p>
+            If you cannot access BacHelper, you can request
+            account deletion by contacting us.
+        </p>
+
+        <div class="email-box">
+
+            <strong>
+                Email us at:
+            </strong>
+
+            <br>
+
+            <a href="mailto:aymen.attia.work@gmail.com">
+                aymen.attia.work@gmail.com
+            </a>
+
+            <br>
+
+            <a
+                class="email-button"
+                href="mailto:aymen.attia.work@gmail.com?subject=BacHelper%20Account%20Deletion%20Request"
+            >
+                Request Account Deletion
+            </a>
+
+        </div>
+
+        <h3>
+            Please include
+        </h3>
+
+        <ul>
+
+            <li>
+                The email address used to sign in with Google.
+            </li>
+
+            <li>
+                A clear request to delete your BacHelper account.
+            </li>
+
+        </ul>
+
+        <div class="highlight">
+
+            For security reasons, we may ask for additional
+            information to verify that you own the account
+            before processing the deletion request.
+
+        </div>
+
+    </section>
+
+
+    <section class="section" id="deleted">
+
+        <div class="section-number">
+            03
+        </div>
+
+        <h2>
+            Data Deleted When You Delete Your Account
+        </h2>
+
+        <p>
+            When account deletion is requested, BacHelper
+            attempts to delete account-related online data,
+            including:
+        </p>
+
+        <div class="data-grid">
+
+            <div class="data-item">
+
+                <strong>
+                    User Profile
+                </strong>
+
+                <span>
+                    Profile document, username, profile photo URL,
+                    and study division stored online.
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    Community Posts
+                </strong>
+
+                <span>
+                    Posts created by your account.
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    Uploaded Images
+                </strong>
+
+                <span>
+                    Images uploaded with your community posts.
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    Comments & Replies
+                </strong>
+
+                <span>
+                    Comments and replies associated with your account.
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    Follow Relationships
+                </strong>
+
+                <span>
+                    Follow relationships associated with your account.
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    Community Notifications
+                </strong>
+
+                <span>
+                    Notifications related to your community account.
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    Reports
+                </strong>
+
+                <span>
+                    Reports created by you, where deletion is allowed.
+                </span>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <strong>
+                    Moderation Records
+                </strong>
+
+                <span>
+                    Ban or moderation records where deletion is allowed
+                    by security and moderation requirements.
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section" id="remaining">
+
+        <div class="section-number">
+            04
+        </div>
+
+        <h2>
+            Data That May Remain Temporarily
+        </h2>
+
+        <p>
+            Some information may remain for a limited period
+            when necessary for:
+        </p>
+
+        <ul>
+
+            <li>
+                Security and abuse prevention.
+            </li>
+
+            <li>
+                Moderation history.
+            </li>
+
+            <li>
+                Legal compliance.
+            </li>
+
+            <li>
+                Technical limitations.
+            </li>
+
+            <li>
+                Backup or logging systems managed by
+                third-party service providers.
+            </li>
+
+        </ul>
+
+        <div class="highlight danger">
+
+            Some content may also remain if it is not
+            technically possible to identify or delete it
+            immediately, or if it must be retained to
+            investigate abuse or protect other users.
+
+        </div>
+
+    </section>
+
+
+    <section class="section" id="guest">
+
+        <div class="section-number">
+            05
+        </div>
+
+        <h2>
+            Guest Users
+        </h2>
+
+        <p>
+            Guest users do not have a Google-linked BacHelper
+            account.
+        </p>
+
+        <p>
+            Guest study data is stored locally on the device.
+        </p>
+
+        <h3>
+            To delete guest data
+        </h3>
+
+        <ul>
+
+            <li>
+                Clear BacHelper app data from your device settings.
+            </li>
+
+            <li>
+                Or uninstall BacHelper from your device.
+            </li>
+
+        </ul>
+
+        <div class="highlight success">
+
+            Local guest data may include study sessions,
+            reminders, lessons, notes, Pomodoro progress,
+            and app preferences.
+
+        </div>
+
+    </section>
+
+
+    <section class="section" id="local">
+
+        <div class="section-number">
+            06
+        </div>
+
+        <h2>
+            Deleting Local Device Data
+        </h2>
+
+        <p>
+            Deleting your Google-linked account removes
+            online account data where possible. Local app
+            data stored on your device may remain until
+            you clear it.
+        </p>
+
+        <h3>
+            To remove local BacHelper data
+        </h3>
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <div class="step-content">
+
+                    <strong>
+                        Open device Settings
+                    </strong>
+
+                    <span>
+                        Open your Android device settings.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <div class="step-content">
+
+                    <strong>
+                        Go to Apps
+                    </strong>
+
+                    <span>
+                        Open the list of installed applications.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <div class="step-content">
+
+                    <strong>
+                        Select BacHelper
+                    </strong>
+
+                    <span>
+                        Open BacHelper's application settings.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    4
+                </div>
+
+                <div class="step-content">
+
+                    <strong>
+                        Open Storage
+                    </strong>
+
+                    <span>
+                        Open the application's storage settings.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    5
+                </div>
+
+                <div class="step-content">
+
+                    <strong>
+                        Clear Data or Uninstall
+                    </strong>
+
+                    <span>
+                        Clear the app data or uninstall BacHelper.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <p style="margin-top: 18px;">
+            The exact steps may vary depending on your
+            Android device.
+        </p>
+
+    </section>
+
+
+    <section class="section" id="third-party">
+
+        <div class="section-number">
+            07
+        </div>
+
+        <h2>
+            Third-Party Services
+        </h2>
+
+        <p>
+            BacHelper uses Google Sign-In and Firebase services.
+            Some data may therefore be processed by Google
+            according to Google's own privacy and retention
+            policies.
+        </p>
+
+        <h3>
+            More information
+        </h3>
+
+        <ul>
+
+            <li>
+                <a
+                    href="https://policies.google.com/privacy"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Google Privacy Policy
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="https://firebase.google.com/support/privacy"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Firebase Privacy and Security
+                </a>
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <section class="section" id="contact">
+
+        <div class="section-number">
+            08
+        </div>
+
+        <h2>
+            Contact
+        </h2>
+
+        <p>
+            For account deletion requests, privacy questions,
+            or support, contact BacHelper.
+        </p>
+
+        <div class="contact-card">
+
+            <h2>
+                Need Help?
+            </h2>
+
+            <p>
+                If you cannot delete your account from inside
+                the application, send us an account deletion
+                request by email.
+            </p>
+
+            <a
+                class="contact-email"
+                href="mailto:aymen.attia.work@gmail.com"
+            >
+                aymen.attia.work@gmail.com
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+```
+
+</div>
+
+<footer>
+
+```
+<div class="footer-inner">
+
+    <div>
+
+        <div class="footer-brand">
+            BacHelper
+        </div>
+
+        <div class="footer-text">
+            Educational tools for Tunisian Baccalaureate students.
+        </div>
+
+    </div>
+
+    <div class="footer-links">
+
+        <a href="index.html">
+            Privacy Policy
+        </a>
+
+        <a href="terms-of-service.html">
+            Terms
+        </a>
+
+        <a href="account-deletion.html">
+            Account Deletion
+        </a>
+
+    </div>
+
+</div>
+```
+
+</footer>
+
+</body>
+</html>
